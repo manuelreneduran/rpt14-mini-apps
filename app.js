@@ -10,5 +10,10 @@
 //controller
   //listener for clicks
   window.onload = function () {
-    alert("LOADED!");
+  var theParent = document.querySelector("body");
+  theParent.addEventListener('click', (e) => {
+    if (e.target.className === "column") {
+      console.log(e);
+    }
+  });
 }
