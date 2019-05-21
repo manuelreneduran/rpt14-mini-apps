@@ -9,6 +9,26 @@
     }
   }
 
+  var resetBoard = (target) => {
+    //iterate through board and remove all <p> elements
+    console.log(document.body.children);
+    var body = document.body.children;
+
+    for (var i = 0; i < 3; i++) {
+      var row = body[i];
+
+      for (var q = 0; q < row.children.length; q++) {
+        var column = row.children[q];
+
+        if (column.children.length > 0) {
+          column.removeChild(column.children[0]);
+        }
+      }
+    }
+    //resets turn variable to a new instance of updatesPlayerTurn()
+    turn = updatesPlayerTurn();
+  }
+
   var updatesPlayerTurn = () => {
     var turn = 'o';
     return function() {
@@ -29,8 +49,6 @@
   //********************************************//
 
   var detectHorizontalMatch = (target) => {
-    //check if all divs in the row have p elements with the same classname
-      //iterate through target row
         var parentRow = target.parentElement.children;
         var xCounter = 0;
         var oCounter = 0;
@@ -46,8 +64,6 @@
         } else if (oCounter === 3) {
           console.log("O MATCH");
         }
-      //check each element for a p child and keep track of how many of the same classes it sees
-        //if 3 of the same class, it's a match
   }
 
   var detectVerticalMatch = () => {
