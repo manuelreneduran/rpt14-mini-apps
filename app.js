@@ -4,16 +4,23 @@
 
 //view
   //renders the model to the index
+  var togglesBoxRed = (target) => {
+    if (target.style.backgroundColor === "red") {
+      target.style.backgroundColor = "";
+    } else {
+      target.style.backgroundColor = "red";
+    }
+  }
 
 
 
 //controller
   //listener for clicks
   window.onload = function () {
-  var theParent = document.querySelector("body");
-  theParent.addEventListener('click', (e) => {
+  document.addEventListener('click', (e) => {
     if (e.target.className === "column") {
       console.log(e);
+      togglesBoxRed(e.target)
     }
   });
 }
