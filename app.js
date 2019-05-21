@@ -9,3 +9,6 @@
 
 //controller
   //listener for clicks
+  window.onload = function () {
+    alert("LOADED!");
+}
