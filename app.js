@@ -63,8 +63,35 @@
         }
   }
 
-  var detectVerticalMatch = () => {
+  var detectVerticalMatch = (target) => {
+    var index;
 
+    if (target.previousElementSibling === null) {
+      index = 0;
+    } else if (target.nextElementSibling === null) {
+      index = 2;
+    } else {
+      index = 1;
+    }
+    var body = document.body.children;
+    var xCounter = 0;
+    var oCounter = 0;
+
+    for (var i = 0; i < 3; i++) {
+      var column = body[i].children[index];
+      if (column.innerText === 'O') {
+        oCounter++;
+      } else if (column.innerText === 'X') {
+        xCounter++;
+      }
+    }
+    if (xCounter === 3) {
+      resetBoard()
+      alert("Player X Wins!");
+    } else if (oCounter === 3) {
+      resetBoard();
+      alert("Player O Wins!");
+    }
   }
 
   var detectDiagonalMatch = () => {
@@ -73,7 +100,6 @@
 
   var detectTieCounter = () => {
     var counter = 0;
-
     return function() {
       if (counter >= 8 ) {
         resetBoard();
@@ -109,6 +135,7 @@
       //detects matches
 
       detectHorizontalMatch(e.target);
+      detectVerticalMatch(e.target);
 
       detectTie();
     }
