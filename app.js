@@ -9,23 +9,17 @@
     }
   }
 
-  var resetBoard = (target) => {
-    //iterate through board and remove all <p> elements
-    console.log(document.body.children);
+  var resetBoard = () => {
     var body = document.body.children;
-
     for (var i = 0; i < 3; i++) {
       var row = body[i];
-
       for (var q = 0; q < row.children.length; q++) {
         var column = row.children[q];
-
         if (column.children.length > 0) {
           column.removeChild(column.children[0]);
         }
       }
     }
-    //resets turn variable to a new instance of updatesPlayerTurn()
     turn = updatesPlayerTurn();
   }
 
@@ -60,9 +54,11 @@
           }
         }
         if (xCounter === 3) {
-          console.log("X MATCH");
+          resetBoard()
+          alert("Player X Wins!");
         } else if (oCounter === 3) {
-          console.log("O MATCH");
+          resetBoard();
+          alert("Player O Wins!");
         }
   }
 
@@ -95,6 +91,11 @@
       //detects matches
       detectHorizontalMatch(e.target);
     }
+  });
+
+  var button = document.querySelector("button");
+  button.addEventListener("click", () => {
+    resetBoard();
   });
 }
 
