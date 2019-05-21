@@ -1,35 +1,52 @@
 //model
-  //functions to manipulate data
+  //********************************************//
+  //          UPDATE BOARD FUNCTIONS            //
+  //********************************************//
+
   var addsXorO = (target) => {
     if (target.className === "column" && target.children.length === 0) {
-      target.insertAdjacentHTML('afterbegin', x);
+      target.insertAdjacentHTML('afterbegin', turn());
     }
-    //check if target has an x or o already
-      //if so, do nothing
-      //if not, check to see if it's x's turn or o's turn
-        //add the right one to the element
-        //update player turn
-
   }
 
   var updatesPlayerTurn = () => {
-    var turn = 'x';
-
+    var turn = 'o';
     return function() {
       if (turn === 'x') {
         turn = 'o';
-        return turn;
+        return '<p class="o">O</p>';
       } else {
         turn = 'x';
-        return turn;
+        return '<p class="x">X</p>';
       }
     }
+  }
+
+  var turn = updatesPlayerTurn();
+
+  //********************************************//
+  //          DETECT MATCHES FUNCTIONS          //
+  //********************************************//
+
+  var detectHorizontalMatch = () => {
+
+  }
+
+  var detectVerticalMatch = () => {
+
+  }
+
+  var detectDiagonalMatch = () => {
+
+  }
+
+  var detectAnyMatch = () => {
+
   }
 
 
 //view
   //renders the model to the index
-  var x = '<p class="x-p">X</p>'
 
 
 
