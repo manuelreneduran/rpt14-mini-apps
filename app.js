@@ -28,8 +28,26 @@
   //          DETECT MATCHES FUNCTIONS          //
   //********************************************//
 
-  var detectHorizontalMatch = () => {
-
+  var detectHorizontalMatch = (target) => {
+    //check if all divs in the row have p elements with the same classname
+      //iterate through target row
+        var parentRow = target.parentElement.children;
+        var xCounter = 0;
+        var oCounter = 0;
+        for (var i = 0; i < parentRow.length; i++) {
+          if (parentRow[i].innerText === 'O') {
+            oCounter++;
+          } else if (parentRow[i].innerText === 'X') {
+            xCounter++;
+          }
+        }
+        if (xCounter === 3) {
+          console.log("X MATCH");
+        } else if (oCounter === 3) {
+          console.log("O MATCH");
+        }
+      //check each element for a p child and keep track of how many of the same classes it sees
+        //if 3 of the same class, it's a match
   }
 
   var detectVerticalMatch = () => {
@@ -58,7 +76,8 @@
     if (e.target.className === "column") {
       console.log(e);
       addsXorO(e.target);
-      //adds an 'x' or and 'o'
+      //detects matches
+      detectHorizontalMatch(e.target);
     }
   });
 }
