@@ -1,16 +1,36 @@
 //model
   //functions to manipulate data
+  var addsXorO = (target) => {
+    if (target.className === "column" && target.children.length === 0) {
+      target.insertAdjacentHTML('afterbegin', x);
+    }
+    //check if target has an x or o already
+      //if so, do nothing
+      //if not, check to see if it's x's turn or o's turn
+        //add the right one to the element
+        //update player turn
+
+  }
+
+  var updatesPlayerTurn = () => {
+    var turn = 'x';
+
+    return function() {
+      if (turn === 'x') {
+        turn = 'o';
+        return turn;
+      } else {
+        turn = 'x';
+        return turn;
+      }
+    }
+  }
 
 
 //view
   //renders the model to the index
-  var togglesBoxRed = (target) => {
-    if (target.style.backgroundColor === "red") {
-      target.style.backgroundColor = "";
-    } else {
-      target.style.backgroundColor = "red";
-    }
-  }
+  var x = '<p class="x-p">X</p>'
+
 
 
 
@@ -20,7 +40,8 @@
   document.addEventListener('click', (e) => {
     if (e.target.className === "column") {
       console.log(e);
-      togglesBoxRed(e.target)
+      addsXorO(e.target);
+      //adds an 'x' or and 'o'
     }
   });
 }
