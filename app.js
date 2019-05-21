@@ -21,6 +21,7 @@
       }
     }
     turn = updatesPlayerTurn();
+    detectTie = detectTieCounter();
   }
 
   var updatesPlayerTurn = () => {
@@ -70,6 +71,22 @@
 
   }
 
+  var detectTieCounter = () => {
+    var counter = 0;
+
+    return function() {
+      if (counter >= 8 ) {
+        resetBoard();
+        counter = 0;
+        alert("You tied!");
+      } else {
+        counter++;
+      }
+    }
+  }
+
+  var detectTie = detectTieCounter();
+
   var detectAnyMatch = () => {
 
   }
@@ -86,10 +103,14 @@
   window.onload = function () {
   document.addEventListener('click', (e) => {
     if (e.target.className === "column") {
+
       console.log(e);
       addsXorO(e.target);
       //detects matches
+
       detectHorizontalMatch(e.target);
+
+      detectTie();
     }
   });
 
