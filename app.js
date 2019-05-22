@@ -94,9 +94,55 @@
     }
   }
 
-  var detectDiagonalMatch = () => {
+  var detectBackwardDiagonal = function() {
+    xCounter = 0;
+    oCounter = 0;
+    var q = 2;
+    console.log(document.body.children);
+    for (var i = 0; i < 3; i++) {
+      row = document.body.children[i];
 
+      if (row.children[q].innerText === 'X') {
+        xCounter++;
+      } else if (row.children[q].innerText === 'O') {
+        oCounter++;
+      }
+      q--;
+    }
+    if (xCounter === 3) {
+      resetBoard()
+      alert("Player X Wins!");
+    } else if (oCounter === 3) {
+      resetBoard();
+      alert("Player O Wins!");
+    }
   }
+
+
+    var detectForwardDiagonal = function() {
+      xCounter = 0;
+      oCounter = 0;
+      var q = 0;
+      console.log(document.body.children);
+      for (var i = 0; i < 3; i++) {
+        row = document.body.children[i];
+
+        if (row.children[q].innerText === 'X') {
+          xCounter++;
+        } else if (row.children[q].innerText === 'O') {
+          oCounter++;
+        }
+        q++;
+      }
+      if (xCounter === 3) {
+        resetBoard()
+        alert("Player X Wins!");
+      } else if (oCounter === 3) {
+        resetBoard();
+        alert("Player O Wins!");
+      }
+    }
+
 
   var detectTieCounter = () => {
     var counter = 0;
@@ -113,8 +159,12 @@
 
   var detectTie = detectTieCounter();
 
-  var detectAnyMatch = () => {
-
+  var detectAnyMatch = (target) => {
+    detectHorizontalMatch(target);
+    detectVerticalMatch(target);
+    detectForwardDiagonal();
+    detectBackwardDiagonal();
+    detectTie();
   }
 
 
@@ -130,17 +180,14 @@
   document.addEventListener('click', (e) => {
     if (e.target.className === "column") {
 
-      console.log(e);
+      // console.log(e);
       addsXorO(e.target);
       //detects matches
-
-      detectHorizontalMatch(e.target);
-      detectVerticalMatch(e.target);
-
-      detectTie();
+      detectAnyMatch(e.target);
     }
   });
 
+  //butotn listener
   var button = document.querySelector("button");
   button.addEventListener("click", () => {
     resetBoard();
@@ -152,6 +199,5 @@
 //1) create tic tac toe diagram on html
 //2) add an event clicker that adds an X or an O to the clicked div
   // Xs and Os should alternate, starting with X
-  // highlight players to show active player
 //3) create functions that detects wins or ties and displays a message
 //4) add a button to reset game for new round
